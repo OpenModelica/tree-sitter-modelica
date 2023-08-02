@@ -30,7 +30,7 @@ module.exports = grammar({
     extras: $ => [
         $.BLOCK_COMMENT,
         $.LINE_COMMENT,
-        $.SPACE
+        $._SPACE
     ],
     word: $ => $.IDENT,
     rules: {
@@ -743,7 +743,7 @@ module.exports = grammar({
             seq("//", /[^\r\n]*/)
         ),
 
-        SPACE: $ => /\s+/
+        _SPACE: $ => /\s+/
 
     }
 
