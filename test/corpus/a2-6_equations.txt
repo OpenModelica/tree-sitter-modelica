@@ -1,0 +1,595 @@
+===============
+Simple Equation
+===============
+
+model Resistor
+  equation
+    v = 2.0;
+end Resistor;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (equation_section
+          (equation_list
+            (simple_equation
+              (component_reference
+                (IDENT))
+              (unsigned_real_literal_expression
+                (UNSIGNED_REAL )))))
+          (IDENT)))))
+
+===========
+If Equation
+===========
+
+model IfEquationExample
+  Real x = 10;
+  Real y;
+
+  equation
+    if x > 5 then
+      y = x;
+    else
+      y = 0;
+    end if;
+end IfEquationExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT)))))))
+          (equation_section
+            (equation_list
+              (if_equation
+                (binary_expression
+                  (component_reference
+                    (IDENT))
+                  (unsigned_integer_literal_expression
+                    (UNSIGNED_INTEGER)))
+                  (equation_list
+                    (simple_equation
+                      (component_reference
+                        (IDENT))
+                      (component_reference
+                        (IDENT))))
+                  (equation_list
+                    (simple_equation
+                      (component_reference
+                        (IDENT))
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER)))))))
+              (IDENT)))))
+
+============
+If Statement
+============
+
+model IfStatementExample
+  Real x = 10;
+  Real y;
+
+  algorithm
+    if x > 5 then
+      y := x;
+    else
+      y := 0;
+    end if;
+end IfStatementExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT)))))))
+          (algorithm_section
+            (statement_list
+              (if_statement
+                (binary_expression
+                  (component_reference
+                    (IDENT))
+                  (unsigned_integer_literal_expression
+                    (UNSIGNED_INTEGER)))
+                  (statement_list
+                    (assignment_statement
+                      (component_reference
+                        (IDENT))
+                      (component_reference
+                        (IDENT))))
+                  (statement_list
+                    (assignment_statement
+                      (component_reference
+                        (IDENT))
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER)))))))
+              (IDENT)))))
+
+============
+For Equation
+============
+
+model ForLoopExample
+  parameter Integer n = 5;
+  Real sum = 0;
+
+  equation
+    for i in 1:n loop
+      sum = sum + i;
+    end for;
+end ForLoopExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT)
+                      (modification
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER)))))))))
+            (equation_section
+              (equation_list
+                (for_equation
+                  (for_indices
+                    (for_index
+                      (IDENT)
+                      (range_expression
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER))
+                          (component_reference
+                            (IDENT)))))
+                    (equation_list
+                      (simple_equation
+                        (component_reference
+                          (IDENT))
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (component_reference
+                            (IDENT))))))))
+              (IDENT)))))
+
+=============
+For Statement
+=============
+
+model ForStatementExample
+  parameter Integer n = 5;
+  Real sum = 0;
+
+  algorithm
+    for i in 1:n loop
+      sum := sum + i;
+    end for;
+end ForStatementExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT)
+                      (modification
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER)))))))))
+            (algorithm_section
+              (statement_list
+                (for_statement
+                  (for_indices
+                    (for_index
+                      (IDENT)
+                      (range_expression
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER))
+                          (component_reference
+                            (IDENT)))))
+                    (statement_list
+                      (assignment_statement
+                        (component_reference
+                          (IDENT))
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (component_reference
+                            (IDENT))))))))
+              (IDENT)))))
+
+===============
+While Statement
+===============
+
+model WhileStatementExample
+  Real x = 1;
+  Real sum = 0;
+
+  algorithm
+    while x <= 10 loop
+      sum := sum + x;
+      x := x + 1;
+    end while;
+end WhileStatementExample;
+
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT)
+                      (modification
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER)))))))))
+            (algorithm_section
+              (statement_list
+                (while_statement
+                  (binary_expression
+                    (component_reference
+                      (IDENT))
+                    (unsigned_integer_literal_expression
+                      (UNSIGNED_INTEGER)))
+                    (statement_list
+                      (assignment_statement
+                        (component_reference
+                          (IDENT))
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (component_reference
+                            (IDENT))))
+                      (assignment_statement
+                        (component_reference
+                          (IDENT))
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (unsigned_integer_literal_expression
+                            (UNSIGNED_INTEGER))))))))
+                (IDENT)))))
+
+=============
+When Equation
+=============
+
+model WhenEquationExample
+  Real x = 5;
+  Real y = 0;
+
+  equation
+    when x > 0.5 then
+      y = x * x;
+    elsewhen x < -0.5 then
+      y = -x * x;
+    end when;
+end WhenEquationExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT)
+                      (modification
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER)))))))))
+            (equation_section
+              (equation_list
+                (when_equation
+                  (binary_expression
+                    (component_reference
+                      (IDENT))
+                    (unsigned_real_literal_expression
+                      (UNSIGNED_REAL)))
+                    (equation_list
+                      (simple_equation
+                        (component_reference
+                          (IDENT))
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (component_reference
+                            (IDENT)))))
+                    (else_when_equation_clause_list
+                      (else_when_equation_clause
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (unary_expression
+                            (unsigned_real_literal_expression
+                              (UNSIGNED_REAL))))
+                          (equation_list
+                            (simple_equation
+                              (component_reference
+                                (IDENT))
+                              (binary_expression
+                                (unary_expression
+                                  (component_reference
+                                    (IDENT)))
+                                (component_reference
+                                  (IDENT))))))))))
+                (IDENT)))))
+
+==============
+When Statement
+==============
+
+model WhenStatementExample
+  Real x = 5;
+  Real y = 0;
+
+  algorithm
+    when x > 0.5 then
+      y := x * x;
+    elsewhen x < -0.5 then
+      y := -x * x;
+    end when;
+end WhenStatementExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT)
+                      (modification
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER)))))))))
+            (algorithm_section
+              (statement_list
+                (when_statement
+                  (binary_expression
+                    (component_reference
+                      (IDENT))
+                    (unsigned_real_literal_expression
+                      (UNSIGNED_REAL)))
+                    (statement_list
+                      (assignment_statement
+                        (component_reference
+                          (IDENT))
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (component_reference
+                            (IDENT)))))
+                    (else_when_statement_clause_list
+                      (else_when_statement_clause
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (unary_expression
+                            (unsigned_real_literal_expression
+                              (UNSIGNED_REAL))))
+                          (statement_list
+                            (assignment_statement
+                              (component_reference
+                                (IDENT))
+                              (binary_expression
+                                (unary_expression
+                                  (component_reference
+                                    (IDENT)))
+                                (component_reference
+                                  (IDENT))))))))))
+                (IDENT)))))
+
+================
+Connect Equation
+================
+
+model ConnectEquationExample
+  Real inputPort;
+  Real outputPort;
+
+  equation
+    connect(inputPort, outputPort);
+end ConnectEquationExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))))
+        (equation_section
+          (equation_list
+            (connect_clause
+              (component_reference
+                (IDENT))
+              (component_reference
+                (IDENT)))))
+        (IDENT)))))

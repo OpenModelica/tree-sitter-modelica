@@ -1,0 +1,44 @@
+==============
+Extends Clause
+==============
+
+class Parent
+  Real value = 10.0;
+end Parent;
+
+class Child extends Parent;
+end Child;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_real_literal_expression
+                        (UNSIGNED_REAL)))))))))
+          (IDENT))))
+    (stored_definition
+      (class_definition
+        (class_prefixes)
+        (long_class_specifier
+          (IDENT)
+          (element_list
+            (extends_clause
+              (type_specifier
+                (name
+                  (IDENT)))))
+          (IDENT)))))

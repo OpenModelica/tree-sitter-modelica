@@ -1,0 +1,206 @@
+================
+Component Clause
+================
+
+model ComponentClauseExample
+  Real temperature;
+  Real pressure;
+
+  Modelica.Blocks.Sources.Sine sine1(amplitude=1, frequency=2);
+  Modelica.Blocks.Sources.Sine sine2(amplitude=0.5, frequency=5);
+
+  equation
+    temperature = sine1.y;
+    pressure = sine2.y;
+end ComponentClauseExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (name
+                    (name
+                      (name
+                        (IDENT))
+                      (IDENT))
+                    (IDENT))
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (class_modification
+                        (argument_list
+                          (element_modification
+                            (name
+                              (IDENT))
+                            (modification
+                              (unsigned_integer_literal_expression
+                                (UNSIGNED_INTEGER))))
+                            (element_modification
+                              (name
+                                (IDENT))
+                              (modification
+                                (unsigned_integer_literal_expression
+                                  (UNSIGNED_INTEGER))))))))))))
+              (named_element
+                (component_clause
+                  (type_specifier
+                    (name
+                      (name
+                        (name
+                          (name
+                            (IDENT))
+                          (IDENT))
+                        (IDENT))
+                      (IDENT)))
+                  (component_list
+                    (component_declaration
+                      (declaration
+                        (IDENT)
+                        (modification
+                          (class_modification
+                            (argument_list
+                              (element_modification
+                                (name
+                                  (IDENT))
+                                (modification
+                                  (unsigned_real_literal_expression
+                                    (UNSIGNED_REAL))))
+                                (element_modification
+                                  (name
+                                    (IDENT))
+                                  (modification
+                                    (unsigned_integer_literal_expression
+                                      (UNSIGNED_INTEGER)))))))))))))
+                (equation_section
+                  (equation_list
+                    (simple_equation
+                      (component_reference
+                        (IDENT))
+                      (component_reference
+                        (component_reference
+                          (IDENT))
+                        (IDENT)))
+                    (simple_equation
+                      (component_reference
+                        (IDENT))
+                      (component_reference
+                        (component_reference
+                          (IDENT))
+                        (IDENT)))))
+                (IDENT)))))
+
+============================
+Long Class with Declarations
+============================
+
+model Resistor
+  Modelica.Electrical.Analog.Interface.PositivePin p;
+  Modelica.Electrical.Analog.Interface.NegativePin n;
+  Modelica.SIunits.Voltage v "Voltage";
+  Modelica.SIunits.Current i "Current";
+end Resistor;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (name
+                    (name
+                      (name
+                        (name
+                          (IDENT))
+                        (IDENT))
+                      (IDENT))
+                    (IDENT))
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (name
+                    (name
+                      (name
+                        (name
+                          (IDENT))
+                        (IDENT))
+                      (IDENT))
+                    (IDENT))
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (name
+                    (name
+                      (IDENT))
+                    (IDENT))
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))
+                  (description_string
+                    (STRING))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (name
+                    (name
+                      (IDENT))
+                    (IDENT))
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))
+                  (description_string
+                    (STRING)))))))
+        (IDENT)))))

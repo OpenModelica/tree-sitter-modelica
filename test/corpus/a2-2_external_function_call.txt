@@ -1,0 +1,96 @@
+======================
+External Function Call
+======================
+
+model ExternalFunctionCallExample
+  Real input = 5.0;
+  Real output;
+
+  function MyExternalFunction
+    input Real x;
+    output Real y;
+    external "C" y = my_external_function(x);
+  end MyExternalFunction;
+
+  equation
+    output = MyExternalFunction(input);
+end ExternalFunctionCallExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_real_literal_expression
+                        (UNSIGNED_REAL))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+              (named_element
+                (class_definition
+                  (class_prefixes)
+                  (long_class_specifier
+                    (IDENT)
+                    (element_list
+                      (named_element
+                        (component_clause
+                          (type_specifier
+                            (name
+                              (IDENT)))
+                          (component_list
+                            (component_declaration
+                              (declaration
+                                (IDENT))))))
+                      (named_element
+                        (component_clause
+                          (type_specifier
+                            (name
+                              (IDENT)))
+                          (component_list
+                            (component_declaration
+                              (declaration
+                                (IDENT)))))))
+                    (external_clause
+                      (language_specification
+                        (STRING))
+                      (external_function
+                        (component_reference
+                          (IDENT))
+                        (IDENT)
+                        (expression_list
+                          (component_reference
+                            (IDENT)))))
+                    (IDENT)))))
+            (equation_section
+              (equation_list
+                (simple_equation
+                  (component_reference
+                    (IDENT))
+                  (function_application
+                    (component_reference
+                      (IDENT))
+                    (function_call_args
+                      (function_arguments
+                        (component_reference
+                          (IDENT))))))))
+            (IDENT)))))
