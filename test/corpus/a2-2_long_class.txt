@@ -1,0 +1,162 @@
+================
+Long Empty Class
+================
+
+model Foo 
+end Foo;
+
+---
+
+(stored_definitions
+  (stored_definition
+  (class_definition
+    (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+  (IDENT)))))
+
+==============================
+Long Class with String Comment
+==============================
+
+model Foo "Test"
+end Foo;
+
+---
+
+(stored_definitions
+  (stored_definition
+  (class_definition
+    (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (description_string
+          (STRING))
+        (IDENT)))))
+
+======================
+Long Class with Import
+======================
+
+model Resistor
+  import SIunits = Modelica.SIunits;
+  import Modelica.{SIunits};
+end Resistor;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (import_clause
+            (IDENT)
+            (name
+              (name
+                (IDENT))
+              (IDENT)))
+          (import_clause
+            (name
+              (IDENT))
+            (import_list
+              (IDENT))))
+        (IDENT)))))
+
+=============================================
+Long Class with Equation Container Expression
+=============================================
+
+model Resistor
+  equation
+    v = i * R "Ohm's Law";
+end Resistor;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (equation_section
+          (equation_list
+            (simple_equation
+              (component_reference
+                (IDENT))
+              (binary_expression
+                (component_reference
+                  (IDENT))
+                (component_reference
+                  (IDENT)))
+              (description_string
+                (STRING)))))
+        (IDENT)))))
+
+=============================
+Long Class with Function Call
+=============================
+
+model Resistor
+  equation
+    v = f(i);
+end Resistor;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (equation_section
+          (equation_list
+            (simple_equation
+              (component_reference
+                (IDENT))
+              (function_application
+                (component_reference
+                  (IDENT))
+                (function_call_args
+                  (function_arguments
+                    (component_reference
+                      (IDENT))))))))
+        (IDENT)))))
+
+=======================================================
+Long Class with Function Call with Expression Arguments
+=======================================================
+
+model Resistor
+  equation
+    v = f(i*R);
+end Resistor;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (equation_section
+          (equation_list
+            (simple_equation
+              (component_reference
+                (IDENT))
+              (function_application
+                (component_reference
+                  (IDENT))
+                (function_call_args
+                  (function_arguments
+                    (binary_expression
+                      (component_reference
+                        (IDENT))
+                      (component_reference
+                        (IDENT)))))))))
+        (IDENT)))))

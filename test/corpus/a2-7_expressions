@@ -1,0 +1,235 @@
+===============
+If Expression
+===============
+
+model Test
+  Real x;
+  Real y;
+  Real z = if a>0 then 1.0 elseif a<0 then 3.0 else 2.0;
+  
+  parameter Real a = 10;
+equation
+  x = if a>0 then 1.0 else 2.0;
+  
+  if a>0 then
+    y = 1.0;
+  else
+    y = 2.0;
+  end if;
+end Test;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (if_expression
+                        (binary_expression
+                          (component_reference
+                            (IDENT))
+                          (unsigned_integer_literal_expression
+                            (UNSIGNED_INTEGER)))
+                          (unsigned_real_literal_expression
+                            (UNSIGNED_REAL))
+                            (else_if_clause
+                              (binary_expression
+                                (component_reference
+                                  (IDENT))
+                                (unsigned_integer_literal_expression
+                                  (UNSIGNED_INTEGER)))
+                                (unsigned_real_literal_expression
+                                  (UNSIGNED_REAL)))
+                                (unsigned_real_literal_expression
+                                  (UNSIGNED_REAL)))))))))
+                    (named_element
+                      (component_clause
+                        (type_specifier
+                          (name
+                            (IDENT)))
+                        (component_list
+                          (component_declaration
+                            (declaration
+                              (IDENT)
+                              (modification
+                                (unsigned_integer_literal_expression
+                                  (UNSIGNED_INTEGER)))))))))
+                    (equation_section
+                      (equation_list
+                        (simple_equation
+                          (component_reference
+                            (IDENT))
+                          (if_expression
+                            (binary_expression
+                              (component_reference
+                                (IDENT))
+                              (unsigned_integer_literal_expression
+                                (UNSIGNED_INTEGER)))
+                              (unsigned_real_literal_expression
+                                (UNSIGNED_REAL))
+                                (unsigned_real_literal_expression
+                                  (UNSIGNED_REAL))))
+                              (if_equation
+                                (binary_expression
+                                  (component_reference
+                                    (IDENT))
+                                  (unsigned_integer_literal_expression
+                                    (UNSIGNED_INTEGER)))
+                                  (equation_list
+                                    (simple_equation
+                                      (component_reference
+                                        (IDENT))
+                                      (unsigned_real_literal_expression
+                                        (UNSIGNED_REAL))))
+                                    (equation_list
+                                      (simple_equation
+                                        (component_reference
+                                          (IDENT))
+                                        (unsigned_real_literal_expression
+                                          (UNSIGNED_REAL)))))))
+                                (IDENT)))))
+
+=====================================
+Array Constructor and Array Arguments
+=====================================
+
+model foo
+  Real arrayA = {1, 2, 3, 4, 5};
+end foo;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (array_constructor
+                        (array_arguments
+                          (unsigned_integer_literal_expression
+                            (UNSIGNED_INTEGER))
+                            (unsigned_integer_literal_expression
+                              (UNSIGNED_INTEGER))
+                              (unsigned_integer_literal_expression
+                                (UNSIGNED_INTEGER))
+                                (unsigned_integer_literal_expression
+                                  (UNSIGNED_INTEGER))
+                                  (unsigned_integer_literal_expression
+                                    (UNSIGNED_INTEGER)))))))))))
+                  (IDENT)))))
+
+========================
+Array Comprehension
+========================
+
+model foo
+  Real acom = {10 for y};
+end foo;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (array_comprehension
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER))
+                          (for_indices
+                            (for_index
+                              (IDENT)))))))))))
+          (IDENT)))))
+
+===============================================
+Array Concatenation, Logical and String Literal
+===============================================
+
+model foo
+  Real array_c = [10; true; "STRING"];
+end foo;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (array_concatenation
+                        (expression_list
+                          (unsigned_integer_literal_expression
+                            (UNSIGNED_INTEGER)))
+                          (expression_list
+                            (logical_literal_expression))
+                              (expression_list
+                                (string_literal_expression
+                                  (STRING)))))))))))
+              (IDENT)))))

@@ -1,0 +1,11 @@
+================================
+A.2.1 Stored Definition – Within
+================================
+
+within a091234;
+
+---
+
+(stored_definitions
+    (name
+        (IDENT)))

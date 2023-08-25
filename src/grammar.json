@@ -6272,7 +6272,7 @@
         ]
       }
     },
-    "SPACE": {
+    "_SPACE": {
       "type": "PATTERN",
       "value": "\\s+"
     }
@@ -6288,7 +6288,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "SPACE"
+      "name": "_SPACE"
     }
   ],
   "conflicts": [

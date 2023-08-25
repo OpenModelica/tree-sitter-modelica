@@ -1,0 +1,39 @@
+====================================
+Short Class with Block Comment
+====================================
+
+model Foo = /* Comment */ input Bar;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (short_class_specifier
+        (IDENT)
+        (BLOCK_COMMENT)
+        (base_prefix)
+        (type_specifier
+          (name
+            (IDENT)))))))
+
+===============================
+Short Class with String Comment
+===============================
+
+model Foo = Bar "string comment";
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (short_class_specifier
+      (IDENT)
+        (type_specifier
+          (name
+            (IDENT)))
+        (description_string
+          (STRING))))))

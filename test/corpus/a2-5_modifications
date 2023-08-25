@@ -1,0 +1,97 @@
+=============================
+Long Class with Redeclaration
+=============================
+
+model Resistor
+  extends Library.Component(final a= /* */ 5, redeclare model A=B);
+end Resistor;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (extends_clause
+            (type_specifier
+              (name
+                (name
+                  (IDENT))
+                (IDENT)))
+            (class_modification
+              (argument_list
+                (element_modification
+                  (name
+                    (IDENT))
+                  (modification
+                    (BLOCK_COMMENT)
+                    (unsigned_integer_literal_expression
+                      (UNSIGNED_INTEGER))))
+                (class_redeclaration
+                  (short_class_definition
+                    (class_prefixes)
+                    (short_class_specifier
+                      (IDENT)
+                      (type_specifier
+                        (name
+                          (IDENT))))))))))
+              (IDENT)))))
+
+==================
+Replaceable Clause
+==================
+
+model ReplaceableExample
+  replaceable Modelica.Blocks.Math.Add adder;
+  Real output;
+
+  equation
+    output = adder.y;
+end ReplaceableExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (name
+                    (name
+                      (name
+                        (IDENT))
+                      (IDENT))
+                    (IDENT))
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT))))))
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))))
+        (equation_section
+          (equation_list
+            (simple_equation
+              (component_reference
+                (IDENT))
+              (component_reference
+                (component_reference
+                  (IDENT))
+                (IDENT)))))
+        (IDENT)))))
