@@ -1,0 +1,194 @@
+================================================================
+If Statement with Multiple Output Function Application Statement
+================================================================
+
+model IfExample
+  Real x = 10;
+  Real y;
+
+  function foo
+    input Real bar;
+    output Real result2;
+  algorithm
+    result2 := 3 * bar;
+  end foo;
+
+algorithm
+  if x > 5 then
+    (y, _) := foo(bar = x);
+  else
+    (y, _) := foo(bar = -x);
+  end if;
+end IfExample;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER))))))))
+            (named_element
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT))))))
+            (named_element
+              (class_definition
+                (class_prefixes)
+                (long_class_specifier
+                  (IDENT)
+                  (element_list
+                    (named_element
+                      (component_clause
+                        (type_specifier
+                          (name
+                            (IDENT)))
+                        (component_list
+                          (component_declaration
+                            (declaration
+                              (IDENT))))))
+                    (named_element
+                      (component_clause
+                        (type_specifier
+                          (name
+                            (IDENT)))
+                        (component_list
+                          (component_declaration
+                            (declaration
+                              (IDENT)))))))
+                  (algorithm_section
+                    (statement_list
+                      (assignment_statement
+                        (component_reference
+                          (IDENT))
+                        (binary_expression
+                          (unsigned_integer_literal_expression
+                            (UNSIGNED_INTEGER))
+                            (component_reference
+                              (IDENT))))))
+                    (IDENT)))))
+            (algorithm_section
+              (statement_list
+                (if_statement
+                  (binary_expression
+                    (component_reference
+                      (IDENT))
+                    (unsigned_integer_literal_expression
+                      (UNSIGNED_INTEGER)))
+                    (statement_list
+                      (multiple_output_function_application_statement
+                        (parenthesized_expression
+                          (output_expression_list
+                            (component_reference
+                              (IDENT))
+                            (component_reference
+                              (IDENT))))
+                        (component_reference
+                          (IDENT))
+                        (function_call_args
+                          (named_arguments
+                            (named_argument
+                              (IDENT)
+                              (component_reference
+                                (IDENT)))))))
+                    (statement_list
+                      (multiple_output_function_application_statement
+                        (parenthesized_expression
+                          (output_expression_list
+                            (component_reference
+                              (IDENT))
+                            (component_reference
+                              (IDENT))))
+                        (component_reference
+                          (IDENT))
+                        (function_call_args
+                          (named_arguments
+                            (named_argument
+                              (IDENT)
+                              (unary_expression
+                                (component_reference
+                                  (IDENT)))))))))))
+              (IDENT)))))
+
+=============================================
+Long Class with Function Application Equation
+=============================================
+
+model foo
+  equation
+    fae (bar = function ident());
+end foo;
+
+---
+
+(stored_definitions
+      (stored_definition
+        (class_definition
+          (class_prefixes)
+          (long_class_specifier
+            (IDENT)
+            (equation_section
+              (equation_list
+                (function_application_equation
+                  (component_reference
+                    (IDENT))
+                  (function_call_args
+                    (named_arguments
+                      (named_argument
+                        (IDENT)
+                        (function_partial_application
+                          (type_specifier
+                            (name
+                              (IDENT))))))))))
+            (IDENT)))))
+
+==============================================
+Long Class with Function Application Statement
+==============================================
+
+model foo
+  algorithm
+    fae (bar = function ident());
+end foo;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (algorithm_section
+          (statement_list
+            (function_application_statement
+              (component_reference
+                (IDENT))
+              (function_call_args
+                (named_arguments
+                  (named_argument
+                    (IDENT)
+                    (function_partial_application
+                      (type_specifier
+                        (name
+                          (IDENT))))))))))
+        (IDENT)))))

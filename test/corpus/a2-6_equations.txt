@@ -35,6 +35,8 @@ model IfEquationExample
   equation
     if x > 5 then
       y = x;
+    elseif x > 6 then
+      y = 8;
     else
       y = 0;
     end if;
@@ -84,13 +86,26 @@ end IfEquationExample;
                         (IDENT))
                       (component_reference
                         (IDENT))))
-                  (equation_list
-                    (simple_equation
-                      (component_reference
-                        (IDENT))
-                      (unsigned_integer_literal_expression
-                        (UNSIGNED_INTEGER)))))))
-              (IDENT)))))
+                  (else_if_equation_clause_list
+                    (else_if_equation_clause
+                      (binary_expression
+                        (component_reference
+                          (IDENT))
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER)))
+                        (equation_list
+                          (simple_equation
+                            (component_reference
+                              (IDENT))
+                            (unsigned_integer_literal_expression
+                              (UNSIGNED_INTEGER))))))
+                      (equation_list
+                        (simple_equation
+                          (component_reference
+                            (IDENT))
+                          (unsigned_integer_literal_expression
+                            (UNSIGNED_INTEGER)))))))
+                  (IDENT)))))
 
 ============
 If Statement
@@ -103,8 +118,10 @@ model IfStatementExample
   algorithm
     if x > 5 then
       y := x;
+    elseif x > 6 then
+      return;
     else
-      y := 0;
+      break;
     end if;
 end IfStatementExample;
 
@@ -152,14 +169,18 @@ end IfStatementExample;
                         (IDENT))
                       (component_reference
                         (IDENT))))
-                  (statement_list
-                    (assignment_statement
-                      (component_reference
-                        (IDENT))
-                      (unsigned_integer_literal_expression
-                        (UNSIGNED_INTEGER)))))))
-              (IDENT)))))
-
+                  (else_if_statement_clause_list
+                    (else_if_statement_clause
+                      (binary_expression
+                        (component_reference
+                          (IDENT))
+                        (unsigned_integer_literal_expression
+                          (UNSIGNED_INTEGER)))
+                        (statement_list
+                          (return_statement))))
+                        (statement_list
+                          (break_statement)))))
+                  (IDENT)))))
 ============
 For Equation
 ============

@@ -42,3 +42,43 @@ end Child;
                 (name
                   (IDENT)))))
           (IDENT)))))
+
+=====================
+Constrained By Clause
+=====================
+
+model ElectricalSource
+  replaceable SineSource source constrainedby MO ( final n =5);
+end ElectricalSource;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))
+            (constraining_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (class_modification
+                (argument_list
+                  (element_modification
+                    (name
+                      (IDENT))
+                    (modification
+                      (unsigned_integer_literal_expression
+                        (UNSIGNED_INTEGER)))))))))
+          (IDENT)))))

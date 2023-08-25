@@ -40,7 +40,7 @@ Long Class with Import
 
 model Resistor
   import SIunits = Modelica.SIunits;
-  parameter Modelica.SIunits.Resistance R;
+  import Modelica.{SIunits};
 end Resistor;
 
 ---
@@ -58,20 +58,12 @@ end Resistor;
               (name
                 (IDENT))
               (IDENT)))
-          (named_element
-            (component_clause
-              (type_specifier
-                (name
-                  (name
-                    (name
-                      (IDENT))
-                    (IDENT))
-                  (IDENT)))
-              (component_list
-                (component_declaration
-                  (declaration
-                    (IDENT)))))))
-      (IDENT)))))
+          (import_clause
+            (name
+              (IDENT))
+            (import_list
+              (IDENT))))
+        (IDENT)))))
 
 =============================================
 Long Class with Equation Container Expression

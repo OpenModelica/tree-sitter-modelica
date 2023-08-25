@@ -1,8 +1,8 @@
 ====================================
-Short Empty Class with Block Comment
+Short Class with Block Comment
 ====================================
 
-model Foo = /* Comment */ Bar;
+model Foo = /* Comment */ input Bar;
 
 ---
 
@@ -13,6 +13,7 @@ model Foo = /* Comment */ Bar;
       (short_class_specifier
         (IDENT)
         (BLOCK_COMMENT)
+        (base_prefix)
         (type_specifier
           (name
             (IDENT)))))))

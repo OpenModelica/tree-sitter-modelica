@@ -1,0 +1,116 @@
+================
+Derivative Class
+================
+
+model foo = der(bar, foo);
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (derivative_class_specifier
+        (IDENT)
+        (type_specifier
+          (name
+            (IDENT)))
+        (IDENT)))))
+
+===============================================
+Enumeration Unspecified Class with Line Comment
+===============================================
+
+model foo = enumeration (:);
+// Line Comment
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (enumeration_class_specifier
+        (IDENT))))
+  (LINE_COMMENT))
+
+========================================
+Enumeration Class with Annotation Clause
+========================================
+
+model foo = enumeration (Red, Green)
+  annotation(bar);
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (enumeration_class_specifier
+        (IDENT)
+        (enum_list
+          (enumeration_literal
+            (IDENT))
+          (enumeration_literal
+            (IDENT)))
+            (annotation_clause
+              (class_modification
+                (argument_list
+                  (element_modification
+                    (name
+                      (IDENT))))))))))
+
+====================================================
+Extends Class with Public and Protected Element List
+====================================================
+
+model extends foo (bar [:] redecl)
+  public
+    Real x;
+  protected
+    Real y;
+end foo;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (extends_class_specifier
+        (IDENT)
+        (class_modification
+          (argument_list
+            (component_redeclaration
+              (component_clause
+                (type_specifier
+                  (name
+                    (IDENT)))
+                (array_subscripts
+                  (subscript))
+                (component_list
+                  (component_declaration
+                    (declaration
+                      (IDENT))))))))
+        (public_element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))))
+        (protected_element_list
+              (named_element
+                (component_clause
+                  (type_specifier
+                    (name
+                      (IDENT)))
+                  (component_list
+                    (component_declaration
+                      (declaration
+                        (IDENT)))))))
+            (IDENT)))))
