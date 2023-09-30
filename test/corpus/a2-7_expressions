@@ -55,24 +55,51 @@ end Test;
                   (declaration
                     (IDENT)
                     (modification
-                      (if_expression
-                        (binary_expression
-                          (component_reference
-                            (IDENT))
-                          (unsigned_integer_literal_expression
-                            (UNSIGNED_INTEGER)))
-                          (unsigned_real_literal_expression
-                            (UNSIGNED_REAL))
-                            (else_if_clause
+                      (expression
+                        (if_expression
+                          (expression
+                            (simple_expression
                               (binary_expression
-                                (component_reference
-                                  (IDENT))
-                                (unsigned_integer_literal_expression
-                                  (UNSIGNED_INTEGER)))
-                                (unsigned_real_literal_expression
-                                  (UNSIGNED_REAL)))
-                                (unsigned_real_literal_expression
-                                  (UNSIGNED_REAL)))))))))
+                                (simple_expression
+                                  (primary_expression
+                                    (component_reference
+                                      (IDENT))))
+                                (simple_expression
+                                  (primary_expression
+                                    (literal_expression
+                                      (unsigned_integer_literal_expression
+                                        (UNSIGNED_INTEGER))))))))
+                            (expression
+                              (simple_expression
+                                (primary_expression
+                                  (literal_expression
+                                    (unsigned_real_literal_expression
+                                      (UNSIGNED_REAL))))))
+                              (else_if_clause
+                                (expression
+                                  (simple_expression
+                                    (binary_expression
+                                      (simple_expression
+                                        (primary_expression
+                                          (component_reference
+                                            (IDENT))))
+                                      (simple_expression
+                                        (primary_expression
+                                          (literal_expression
+                                            (unsigned_integer_literal_expression
+                                              (UNSIGNED_INTEGER))))))))
+                                  (expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (literal_expression
+                                          (unsigned_real_literal_expression
+                                            (UNSIGNED_REAL)))))))
+                                  (expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (literal_expression
+                                          (unsigned_real_literal_expression
+                                            (UNSIGNED_REAL))))))))))))))
                     (named_element
                       (component_clause
                         (type_specifier
@@ -83,41 +110,82 @@ end Test;
                             (declaration
                               (IDENT)
                               (modification
-                                (unsigned_integer_literal_expression
-                                  (UNSIGNED_INTEGER)))))))))
+                                (expression
+                                  (simple_expression
+                                    (primary_expression
+                                      (literal_expression
+                                        (unsigned_integer_literal_expression
+                                          (UNSIGNED_INTEGER)))))))))))))
                     (equation_section
                       (equation_list
                         (simple_equation
-                          (component_reference
-                            (IDENT))
-                          (if_expression
-                            (binary_expression
+                          (simple_expression
+                            (primary_expression
                               (component_reference
-                                (IDENT))
-                              (unsigned_integer_literal_expression
-                                (UNSIGNED_INTEGER)))
-                              (unsigned_real_literal_expression
-                                (UNSIGNED_REAL))
-                                (unsigned_real_literal_expression
-                                  (UNSIGNED_REAL))))
+                                (IDENT))))
+                          (expression
+                            (if_expression
+                              (expression
+                                (simple_expression
+                                  (binary_expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (component_reference
+                                          (IDENT))))
+                                    (simple_expression
+                                      (primary_expression
+                                        (literal_expression
+                                          (unsigned_integer_literal_expression
+                                            (UNSIGNED_INTEGER))))))))
+                                (expression
+                                  (simple_expression
+                                    (primary_expression
+                                      (literal_expression
+                                        (unsigned_real_literal_expression
+                                          (UNSIGNED_REAL))))))
+                                  (expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (literal_expression
+                                          (unsigned_real_literal_expression
+                                            (UNSIGNED_REAL)))))))))
                               (if_equation
-                                (binary_expression
-                                  (component_reference
-                                    (IDENT))
-                                  (unsigned_integer_literal_expression
-                                    (UNSIGNED_INTEGER)))
+                                (expression
+                                  (simple_expression
+                                    (binary_expression
+                                      (simple_expression
+                                        (primary_expression
+                                          (component_reference
+                                            (IDENT))))
+                                      (simple_expression
+                                        (primary_expression
+                                          (literal_expression
+                                            (unsigned_integer_literal_expression
+                                              (UNSIGNED_INTEGER))))))))
                                   (equation_list
                                     (simple_equation
-                                      (component_reference
-                                        (IDENT))
-                                      (unsigned_real_literal_expression
-                                        (UNSIGNED_REAL))))
+                                      (simple_expression
+                                        (primary_expression
+                                          (component_reference
+                                            (IDENT))))
+                                      (expression
+                                        (simple_expression
+                                          (primary_expression
+                                            (literal_expression
+                                              (unsigned_real_literal_expression
+                                                (UNSIGNED_REAL))))))))
                                     (equation_list
                                       (simple_equation
-                                        (component_reference
-                                          (IDENT))
-                                        (unsigned_real_literal_expression
-                                          (UNSIGNED_REAL)))))))
+                                        (simple_expression
+                                          (primary_expression
+                                            (component_reference
+                                              (IDENT))))
+                                        (expression
+                                          (simple_expression
+                                            (primary_expression
+                                              (literal_expression
+                                                (unsigned_real_literal_expression
+                                                  (UNSIGNED_REAL)))))))))))
                                 (IDENT)))))
 
 =====================================
@@ -147,18 +215,41 @@ end foo;
                   (declaration
                     (IDENT)
                     (modification
-                      (array_constructor
-                        (array_arguments
-                          (unsigned_integer_literal_expression
-                            (UNSIGNED_INTEGER))
-                            (unsigned_integer_literal_expression
-                              (UNSIGNED_INTEGER))
-                              (unsigned_integer_literal_expression
-                                (UNSIGNED_INTEGER))
-                                (unsigned_integer_literal_expression
-                                  (UNSIGNED_INTEGER))
-                                  (unsigned_integer_literal_expression
-                                    (UNSIGNED_INTEGER)))))))))))
+                      (expression
+                        (simple_expression
+                          (primary_expression
+                            (array_constructor
+                              (array_arguments
+                                (expression
+                                  (simple_expression
+                                    (primary_expression
+                                      (literal_expression
+                                        (unsigned_integer_literal_expression
+                                          (UNSIGNED_INTEGER))))))
+                                  (expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (literal_expression
+                                          (unsigned_integer_literal_expression
+                                            (UNSIGNED_INTEGER))))))
+                                    (expression
+                                      (simple_expression
+                                        (primary_expression
+                                          (literal_expression
+                                            (unsigned_integer_literal_expression
+                                              (UNSIGNED_INTEGER))))))
+                                      (expression
+                                        (simple_expression
+                                          (primary_expression
+                                            (literal_expression
+                                              (unsigned_integer_literal_expression
+                                                (UNSIGNED_INTEGER))))))
+                                        (expression
+                                          (simple_expression
+                                            (primary_expression
+                                              (literal_expression
+                                                (unsigned_integer_literal_expression
+                                                  (UNSIGNED_INTEGER))))))))))))))))))
                   (IDENT)))))
 
 ========================
@@ -188,12 +279,19 @@ end foo;
                   (declaration
                     (IDENT)
                     (modification
-                      (array_comprehension
-                        (unsigned_integer_literal_expression
-                          (UNSIGNED_INTEGER))
-                          (for_indices
-                            (for_index
-                              (IDENT)))))))))))
+                      (expression
+                        (simple_expression
+                          (primary_expression
+                            (array_comprehension
+                              (expression
+                                (simple_expression
+                                  (primary_expression
+                                    (literal_expression
+                                      (unsigned_integer_literal_expression
+                                        (UNSIGNED_INTEGER))))))
+                                (for_indices
+                                  (for_index
+                                    (IDENT))))))))))))))
           (IDENT)))))
 
 ===============================================
@@ -223,13 +321,28 @@ end foo;
                   (declaration
                     (IDENT)
                     (modification
-                      (array_concatenation
-                        (expression_list
-                          (unsigned_integer_literal_expression
-                            (UNSIGNED_INTEGER)))
-                          (expression_list
-                            (logical_literal_expression))
+                      (expression
+                        (simple_expression
+                          (primary_expression
+                            (array_concatenation
                               (expression_list
-                                (string_literal_expression
-                                  (STRING)))))))))))
-              (IDENT)))))
+                                (expression
+                                  (simple_expression
+                                    (primary_expression
+                                      (literal_expression
+                                        (unsigned_integer_literal_expression
+                                          (UNSIGNED_INTEGER)))))))
+                                (expression_list
+                                  (expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (literal_expression
+                                          (logical_literal_expression))))))
+                                (expression_list
+                                  (expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (literal_expression
+                                          (string_literal_expression
+                                            (STRING))))))))))))))))))
+          (IDENT)))))

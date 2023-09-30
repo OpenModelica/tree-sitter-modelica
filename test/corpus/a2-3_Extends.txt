@@ -28,8 +28,12 @@ end Child;
                   (declaration
                     (IDENT)
                     (modification
-                      (unsigned_real_literal_expression
-                        (UNSIGNED_REAL)))))))))
+                      (expression
+                        (simple_expression
+                          (primary_expression
+                            (literal_expression
+                              (unsigned_real_literal_expression
+                                (UNSIGNED_REAL)))))))))))))
           (IDENT))))
     (stored_definition
       (class_definition
@@ -79,6 +83,10 @@ end ElectricalSource;
                     (name
                       (IDENT))
                     (modification
-                      (unsigned_integer_literal_expression
-                        (UNSIGNED_INTEGER)))))))))
+                      (expression
+                        (simple_expression
+                          (primary_expression
+                            (literal_expression
+                              (unsigned_integer_literal_expression
+                                (UNSIGNED_INTEGER)))))))))))))
           (IDENT)))))

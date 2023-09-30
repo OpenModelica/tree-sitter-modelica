@@ -63,14 +63,22 @@ end ComponentClauseExample;
                             (name
                               (IDENT))
                             (modification
-                              (unsigned_integer_literal_expression
-                                (UNSIGNED_INTEGER))))
+                              (expression
+                                (simple_expression
+                                  (primary_expression
+                                    (literal_expression
+                                      (unsigned_integer_literal_expression
+                                        (UNSIGNED_INTEGER))))))))
                             (element_modification
                               (name
                                 (IDENT))
                               (modification
-                                (unsigned_integer_literal_expression
-                                  (UNSIGNED_INTEGER))))))))))))
+                                (expression
+                                  (simple_expression
+                                    (primary_expression
+                                      (literal_expression
+                                        (unsigned_integer_literal_expression
+                                          (UNSIGNED_INTEGER))))))))))))))))
               (named_element
                 (component_clause
                   (type_specifier
@@ -93,30 +101,48 @@ end ComponentClauseExample;
                                 (name
                                   (IDENT))
                                 (modification
-                                  (unsigned_real_literal_expression
-                                    (UNSIGNED_REAL))))
+                                  (expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (literal_expression
+                                          (unsigned_real_literal_expression
+                                            (UNSIGNED_REAL))))))))
                                 (element_modification
                                   (name
                                     (IDENT))
                                   (modification
-                                    (unsigned_integer_literal_expression
-                                      (UNSIGNED_INTEGER)))))))))))))
+                                    (expression
+                                      (simple_expression
+                                        (primary_expression
+                                          (literal_expression
+                                            (unsigned_integer_literal_expression
+                                              (UNSIGNED_INTEGER)))))))))))))))))
                 (equation_section
                   (equation_list
                     (simple_equation
-                      (component_reference
-                        (IDENT))
-                      (component_reference
-                        (component_reference
-                          (IDENT))
-                        (IDENT)))
+                      (simple_expression
+                        (primary_expression
+                          (component_reference
+                            (IDENT))))
+                      (expression
+                        (simple_expression
+                          (primary_expression
+                            (component_reference
+                              (component_reference
+                                (IDENT))
+                              (IDENT))))))
                     (simple_equation
-                      (component_reference
-                        (IDENT))
-                      (component_reference
-                        (component_reference
-                          (IDENT))
-                        (IDENT)))))
+                      (simple_expression
+                        (primary_expression
+                          (component_reference
+                            (IDENT))))
+                      (expression
+                        (simple_expression
+                          (primary_expression
+                            (component_reference
+                              (component_reference
+                                (IDENT))
+                              (IDENT))))))))
                 (IDENT)))))
 
 ============================

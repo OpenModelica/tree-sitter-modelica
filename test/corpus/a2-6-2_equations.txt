@@ -40,8 +40,12 @@ end IfExample;
                   (declaration
                     (IDENT)
                     (modification
-                      (unsigned_integer_literal_expression
-                        (UNSIGNED_INTEGER))))))))
+                      (expression
+                        (simple_expression
+                          (primary_expression
+                            (literal_expression
+                              (unsigned_integer_literal_expression
+                                (UNSIGNED_INTEGER))))))))))))
             (named_element
               (component_clause
                 (type_specifier
@@ -80,53 +84,86 @@ end IfExample;
                       (assignment_statement
                         (component_reference
                           (IDENT))
-                        (binary_expression
-                          (unsigned_integer_literal_expression
-                            (UNSIGNED_INTEGER))
-                            (component_reference
-                              (IDENT))))))
+                        (expression
+                          (simple_expression
+                            (binary_expression
+                              (simple_expression
+                                (primary_expression
+                                  (literal_expression
+                                    (unsigned_integer_literal_expression
+                                      (UNSIGNED_INTEGER)))))
+                                (simple_expression
+                                  (primary_expression
+                                    (component_reference
+                                      (IDENT))))))))))
                     (IDENT)))))
             (algorithm_section
               (statement_list
                 (if_statement
-                  (binary_expression
-                    (component_reference
-                      (IDENT))
-                    (unsigned_integer_literal_expression
-                      (UNSIGNED_INTEGER)))
+                  (expression
+                    (simple_expression
+                      (binary_expression
+                        (simple_expression
+                          (primary_expression
+                            (component_reference
+                              (IDENT))))
+                        (simple_expression
+                          (primary_expression
+                            (literal_expression
+                              (unsigned_integer_literal_expression
+                                (UNSIGNED_INTEGER))))))))
                     (statement_list
                       (multiple_output_function_application_statement
                         (parenthesized_expression
                           (output_expression_list
-                            (component_reference
-                              (IDENT))
-                            (component_reference
-                              (IDENT))))
+                            (expression
+                              (simple_expression
+                                (primary_expression
+                                  (component_reference
+                                    (IDENT)))))
+                            (expression
+                              (simple_expression
+                                (primary_expression
+                                  (component_reference
+                                    (IDENT)))))))
                         (component_reference
                           (IDENT))
                         (function_call_args
                           (named_arguments
                             (named_argument
                               (IDENT)
-                              (component_reference
-                                (IDENT)))))))
+                              (expression
+                                (simple_expression
+                                  (primary_expression
+                                    (component_reference
+                                      (IDENT))))))))))
                     (statement_list
                       (multiple_output_function_application_statement
                         (parenthesized_expression
                           (output_expression_list
-                            (component_reference
-                              (IDENT))
-                            (component_reference
-                              (IDENT))))
+                            (expression
+                              (simple_expression
+                                (primary_expression
+                                  (component_reference
+                                    (IDENT)))))
+                            (expression
+                              (simple_expression
+                                (primary_expression
+                                  (component_reference
+                                    (IDENT)))))))
                         (component_reference
                           (IDENT))
                         (function_call_args
                           (named_arguments
                             (named_argument
                               (IDENT)
-                              (unary_expression
-                                (component_reference
-                                  (IDENT)))))))))))
+                              (expression
+                                (simple_expression
+                                  (unary_expression
+                                    (simple_expression
+                                      (primary_expression
+                                        (component_reference
+                                          (IDENT)))))))))))))))
               (IDENT)))))
 
 =============================================

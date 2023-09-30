@@ -28,8 +28,8 @@ module.exports = grammar({
         [$.function_arguments]
     ],
     extras: $ => [
+        $.comment,
         $.BLOCK_COMMENT,
-        $.LINE_COMMENT,
         $._SPACE
     ],
     word: $ => $.IDENT,
@@ -39,9 +39,10 @@ module.exports = grammar({
 
         stored_definitions: $ => seq(
             optional($.BOM),
-            optional(seq("within", optional(field("within", $.name)), ";")),
+            optional($.within_clause),
             repeat(field("storedDefinitions", $.stored_definition))
         ),
+        within_clause: $ => seq("within", optional(field("name", $.name)), ";"),
 
         stored_definition: $ => seq(
             optional(field("final", "final")),
@@ -268,7 +269,7 @@ module.exports = grammar({
 
         component_declaration: $ => seq(
             field("declaration", $.declaration),
-            optional(seq("if", field("condition", $._expression))),
+            optional(seq("if", field("condition", $.expression))),
             optional(field("descriptionString", $.description_string)),
             optional(field("annotationClause", $.annotation_clause))
         ),
@@ -282,8 +283,8 @@ module.exports = grammar({
         // A.2.5 Modification
 
         modification: $ => choice(
-            seq(field("classModification", $.class_modification), optional(seq("=", field("expression", $._expression)))),
-            seq(choice("=", ":="), field("expression", $._expression))
+            seq(field("classModification", $.class_modification), optional(seq("=", field("expression", $.expression)))),
+            seq(choice("=", ":="), field("expression", $.expression))
         ),
 
         class_modification: $ => seq(
@@ -376,7 +377,7 @@ module.exports = grammar({
         ),
 
         assignment_statement: $ => seq(
-            field("targetExpression", $.component_reference), ":=", field("sourceExpression", $._expression),
+            field("targetExpression", $.component_reference), ":=", field("sourceExpression", $.expression),
             optional(field("descriptionString", $.description_string)),
             optional(field("annotationClause", $.annotation_clause))
         ),
@@ -411,7 +412,7 @@ module.exports = grammar({
 
         for_indices: $ => seq(field("index", $.for_index), repeat(seq(",", field("index", $.for_index)))),
 
-        for_index: $ => seq(field("identifier", $.IDENT), optional(seq("in", field("expression", $._expression)))),
+        for_index: $ => seq(field("identifier", $.IDENT), optional(seq("in", field("expression", $.expression)))),
 
         function_application_equation: $ => seq(
             field("functionReference", $.component_reference),
@@ -428,7 +429,7 @@ module.exports = grammar({
         ),
 
         if_equation: $ => seq(
-            "if", field("condition", $._expression),
+            "if", field("condition", $.expression),
             "then", optional(field("thenEquations", $.equation_list)),
             optional(field("elseIfClauses", $.else_if_equation_clause_list)),
             optional(seq("else", field("elseEquations", $.equation_list))),
@@ -440,12 +441,12 @@ module.exports = grammar({
         else_if_equation_clause_list: $ => repeat1($.else_if_equation_clause),
 
         else_if_equation_clause: $ => prec.right(seq(
-            "elseif", field("condition", $._expression),
+            "elseif", field("condition", $.expression),
             "then", optional(field("equations", $.equation_list))
         )),
 
         if_statement: $ => seq(
-            "if", field("condition", $._expression),
+            "if", field("condition", $.expression),
             "then", optional(field("thenStatements", $.statement_list)),
             optional(field("elseIfClauses", $.else_if_statement_clause_list)),
             optional(seq("else", field("elseStatements", $.statement_list))),
@@ -457,7 +458,7 @@ module.exports = grammar({
         else_if_statement_clause_list: $ => repeat1($.else_if_statement_clause),
 
         else_if_statement_clause: $ => prec.right(seq(
-            "elseif", field("condition", $._expression),
+            "elseif", field("condition", $.expression),
             "then", optional(field("statements", $.statement_list))
         )),
 
@@ -476,13 +477,13 @@ module.exports = grammar({
         ),
 
         simple_equation: $ => seq(
-            field("expression1", $._simple_expression), "=", field("expression2", $._expression),
+            field("expression1", $.simple_expression), "=", field("expression2", $.expression),
             optional(field("descriptionString", $.description_string)),
             optional(field("annotationClause", $.annotation_clause)),
         ),
 
         when_equation: $ => seq(
-            "when", field("condition", $._expression),
+            "when", field("condition", $.expression),
             "then", optional(field("equations", $.equation_list)),
             optional(field("elseWhenClauses", $.else_when_equation_clause_list)),
             "end", "when",
@@ -493,12 +494,12 @@ module.exports = grammar({
         else_when_equation_clause_list: $ => repeat1($.else_when_equation_clause),
 
         else_when_equation_clause: $ => prec.right(seq(
-            "elsewhen", field("condition", $._expression),
+            "elsewhen", field("condition", $.expression),
             "then", optional(field("equations", $.equation_list))
         )),
 
         when_statement: $ => seq(
-            "when", field("condition", $._expression),
+            "when", field("condition", $.expression),
             "then", optional(field("statements", $.statement_list)),
             optional(field("elseWhenClauses", $.else_when_statement_clause_list)),
             "end", "when",
@@ -509,12 +510,12 @@ module.exports = grammar({
         else_when_statement_clause_list: $ => repeat1($.else_when_statement_clause),
 
         else_when_statement_clause: $ => prec.right(seq(
-            "elsewhen", field("condition", $._expression),
+            "elsewhen", field("condition", $.expression),
             "then", optional(field("statements", $.statement_list))
         )),
 
         while_statement: $ => seq(
-            "while", field("condition", $._expression),
+            "while", field("condition", $.expression),
             "loop", optional(field("statements", $.statement_list)),
             "end", "while",
             optional(field("descriptionString", $.description_string)),
@@ -523,80 +524,80 @@ module.exports = grammar({
 
         // A.2.7 Expressions
 
-        _expression: $ => choice(
+        expression: $ => choice(
             $.if_expression,
             $.range_expression,
-            $._simple_expression
+            $.simple_expression
         ),
 
         if_expression: $ => seq(
-            "if", field("condition", $._expression),
-            "then", field("thenExpression", $._expression),
+            "if", field("condition", $.expression),
+            "then", field("thenExpression", $.expression),
             repeat(field("elseIfClause", $.else_if_clause)),
-            "else", field("elseExpression", $._expression)
+            "else", field("elseExpression", $.expression)
         ),
 
         else_if_clause: $ => seq(
-            "elseif", field("condition", $._expression),
-            "then", field("expression", $._expression)
+            "elseif", field("condition", $.expression),
+            "then", field("expression", $.expression)
         ),
 
         range_expression: $ => choice(
-            seq(field("startExpression", $._simple_expression), ":",
-                field("stepExpression", $._simple_expression), ":",
-                field("stopExpression", $._simple_expression)),
-            seq(field("startExpression", $._simple_expression), ":",
-                field("stopExpression", $._simple_expression))
+            seq(field("startExpression", $.simple_expression), ":",
+                field("stepExpression", $.simple_expression), ":",
+                field("stopExpression", $.simple_expression)),
+            seq(field("startExpression", $.simple_expression), ":",
+                field("stopExpression", $.simple_expression))
         ),
 
-        _simple_expression: $ => choice(
+        simple_expression: $ => choice(
             $.unary_expression,
             $.binary_expression,
-            $._primary_expression
+            $.primary_expression
         ),
 
         binary_expression: $ => choice(
-            prec.left(1, seq(field("operand1", $._simple_expression), field("operator", "or"), field("operand2", $._simple_expression))),
-            prec.left(2, seq(field("operand1", $._simple_expression), field("operator", "and"), field("operand2", $._simple_expression))),
-            prec.right(3, seq(field("operand1", $._simple_expression), field("operator", "<"), field("operand2", $._simple_expression))),
-            prec.right(3, seq(field("operand1", $._simple_expression), field("operator", "<="), field("operand2", $._simple_expression))),
-            prec.right(3, seq(field("operand1", $._simple_expression), field("operator", ">"), field("operand2", $._simple_expression))),
-            prec.right(3, seq(field("operand1", $._simple_expression), field("operator", ">="), field("operand2", $._simple_expression))),
-            prec.right(3, seq(field("operand1", $._simple_expression), field("operator", "=="), field("operand2", $._simple_expression))),
-            prec.right(3, seq(field("operand1", $._simple_expression), field("operator", "<>"), field("operand2", $._simple_expression))),
-            prec.left(4, seq(field("operand1", $._simple_expression), field("operator", "+"), field("operand2", $._simple_expression))),
-            prec.left(4, seq(field("operand1", $._simple_expression), field("operator", "-"), field("operand2", $._simple_expression))),
-            prec.left(4, seq(field("operand1", $._simple_expression), field("operator", ".+"), field("operand2", $._simple_expression))),
-            prec.left(4, seq(field("operand1", $._simple_expression), field("operator", ".-"), field("operand2", $._simple_expression))),
-            prec.left(5, seq(field("operand1", $._simple_expression), field("operator", "*"), field("operand2", $._simple_expression))),
-            prec.left(5, seq(field("operand1", $._simple_expression), field("operator", "/"), field("operand2", $._simple_expression))),
-            prec.left(5, seq(field("operand1", $._simple_expression), field("operator", ".*"), field("operand2", $._simple_expression))),
-            prec.left(5, seq(field("operand1", $._simple_expression), field("operator", "./"), field("operand2", $._simple_expression))),
-            prec.right(6, seq(field("operand1", $._primary_expression), field("operator", "^"), field("operand2", $._primary_expression))),
-            prec.right(6, seq(field("operand1", $._primary_expression), field("operator", ".^"), field("operand2", $._primary_expression))),
+            prec.left(1, seq(field("operand1", $.simple_expression), field("operator", "or"), field("operand2", $.simple_expression))),
+            prec.left(2, seq(field("operand1", $.simple_expression), field("operator", "and"), field("operand2", $.simple_expression))),
+            prec.right(3, seq(field("operand1", $.simple_expression), field("operator", "<"), field("operand2", $.simple_expression))),
+            prec.right(3, seq(field("operand1", $.simple_expression), field("operator", "<="), field("operand2", $.simple_expression))),
+            prec.right(3, seq(field("operand1", $.simple_expression), field("operator", ">"), field("operand2", $.simple_expression))),
+            prec.right(3, seq(field("operand1", $.simple_expression), field("operator", ">="), field("operand2", $.simple_expression))),
+            prec.right(3, seq(field("operand1", $.simple_expression), field("operator", "=="), field("operand2", $.simple_expression))),
+            prec.right(3, seq(field("operand1", $.simple_expression), field("operator", "<>"), field("operand2", $.simple_expression))),
+            prec.left(4, seq(field("operand1", $.simple_expression), field("operator", "+"), field("operand2", $.simple_expression))),
+            prec.left(4, seq(field("operand1", $.simple_expression), field("operator", "-"), field("operand2", $.simple_expression))),
+            prec.left(4, seq(field("operand1", $.simple_expression), field("operator", ".+"), field("operand2", $.simple_expression))),
+            prec.left(4, seq(field("operand1", $.simple_expression), field("operator", ".-"), field("operand2", $.simple_expression))),
+            prec.left(5, seq(field("operand1", $.simple_expression), field("operator", "*"), field("operand2", $.simple_expression))),
+            prec.left(5, seq(field("operand1", $.simple_expression), field("operator", "/"), field("operand2", $.simple_expression))),
+            prec.left(5, seq(field("operand1", $.simple_expression), field("operator", ".*"), field("operand2", $.simple_expression))),
+            prec.left(5, seq(field("operand1", $.simple_expression), field("operator", "./"), field("operand2", $.simple_expression))),
+            prec.right(6, seq(field("operand1", $.primary_expression), field("operator", "^"), field("operand2", $.primary_expression))),
+            prec.right(6, seq(field("operand1", $.primary_expression), field("operator", ".^"), field("operand2", $.primary_expression))),
         ),
 
         unary_expression: $ => prec(7, choice(
-            seq(field("operator", "not"), field("operand", $._simple_expression)),
-            seq(field("operator", "+"), field("operand", $._simple_expression)),
-            seq(field("operator", "-"), field("operand", $._simple_expression))
+            seq(field("operator", "not"), field("operand", $.simple_expression)),
+            seq(field("operator", "+"), field("operand", $.simple_expression)),
+            seq(field("operator", "-"), field("operand", $.simple_expression))
         )),
 
-        _primary_expression: $ => choice(
+        primary_expression: $ => choice(
             $.array_comprehension,
             $.array_concatenation,
             $.array_constructor,
             $.component_reference,
             $.end_expression,
             $.function_application,
-            $._literal_expression,
+            $.literal_expression,
             $.parenthesized_expression
         ),
 
         end_expression: $ => "end",
 
         array_comprehension: $ => seq(
-            "{", field("expression", $._expression), "for", field("indices", $.for_indices), "}"
+            "{", field("expression", $.expression), "for", field("indices", $.for_indices), "}"
         ),
 
         array_concatenation: $ => seq(
@@ -608,7 +609,7 @@ module.exports = grammar({
         ),
 
         array_arguments: $ => seq(
-            field("argument", $._expression), repeat(seq(",", field("argument", $._expression)))
+            field("argument", $.expression), repeat(seq(",", field("argument", $.expression)))
         ),
 
         parenthesized_expression: $ => seq(
@@ -623,7 +624,7 @@ module.exports = grammar({
             field("arguments", $.function_call_args)
         ),
 
-        _literal_expression: $ => choice(
+        literal_expression: $ => choice(
             $.logical_literal_expression,
             $.string_literal_expression,
             $._unsigned_number_literal_expression,
@@ -663,7 +664,7 @@ module.exports = grammar({
         function_call_args: $ => choice(
             seq("(", field("arguments", $.function_arguments), optional(seq(",", field("namedArguments", $.named_arguments))), ")"),
             seq("(", optional(field("namedArguments", $.named_arguments)), ")"),
-            seq("(", field("index", $._expression), "for", field("indices", $.for_indices), ")")
+            seq("(", field("index", $.expression), "for", field("indices", $.for_indices), ")")
         ),
 
         function_arguments: $ => seq(
@@ -680,7 +681,7 @@ module.exports = grammar({
 
         _function_argument: $ => choice(
             $.function_partial_application,
-            $._expression
+            $.expression
         ),
 
         function_partial_application: $ => seq(
@@ -688,12 +689,12 @@ module.exports = grammar({
         ),
 
         output_expression_list: $ => choice(
-            seq(field("expression", $._expression), repeat(seq(field("comma", ","), optional(field("expression", $._expression))))),
-            repeat1(seq(field("comma", ","), optional(field("expression", $._expression))))
+            seq(field("expression", $.expression), repeat(seq(field("comma", ","), optional(field("expression", $.expression))))),
+            repeat1(seq(field("comma", ","), optional(field("expression", $.expression))))
         ),
 
         expression_list: $ => seq(
-            field("expression", $._expression), repeat(seq(",", field("expression", $._expression)))
+            field("expression", $.expression), repeat(seq(",", field("expression", $.expression)))
         ),
 
         array_subscripts: $ => seq(
@@ -701,7 +702,7 @@ module.exports = grammar({
         ),
 
         subscript: $ => choice(
-            ":", field("expression", $._expression)
+            ":", field("expression", $.expression)
         ),
 
         description_string: $ => seq(
@@ -736,10 +737,10 @@ module.exports = grammar({
         )),
 
         BLOCK_COMMENT: $ => token(
-            seq("/*", /.*/, "*/")
+            seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")
         ),
 
-        LINE_COMMENT: $ => token(
+        comment: $ => token(
             seq("//", /[^\r\n]*/)
         ),
 

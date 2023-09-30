@@ -28,17 +28,22 @@ end Resistor;
                     (IDENT))
                   (modification
                     (BLOCK_COMMENT)
-                    (unsigned_integer_literal_expression
-                      (UNSIGNED_INTEGER))))
-                (class_redeclaration
-                  (short_class_definition
-                    (class_prefixes)
-                    (short_class_specifier
-                      (IDENT)
-                      (type_specifier
-                        (name
-                          (IDENT))))))))))
-              (IDENT)))))
+                    (expression
+                      (simple_expression
+                        (primary_expression
+                          (literal_expression
+                            (unsigned_integer_literal_expression
+                              (UNSIGNED_INTEGER))))))))
+                  (class_redeclaration
+                    (short_class_definition
+                      (class_prefixes)
+                      (short_class_specifier
+                        (IDENT)
+                        (type_specifier
+                          (name
+                            (IDENT))))))))))
+          (IDENT)))))
+
 
 ==================
 Replaceable Clause
@@ -88,10 +93,16 @@ end ReplaceableExample;
         (equation_section
           (equation_list
             (simple_equation
-              (component_reference
-                (IDENT))
-              (component_reference
-                (component_reference
-                  (IDENT))
-                (IDENT)))))
+              (simple_expression
+                (primary_expression
+                  (component_reference
+                    (IDENT))))
+              (expression
+                (simple_expression
+                  (primary_expression
+                    (component_reference
+                      (component_reference
+                        (IDENT))
+                      (IDENT))))))))
         (IDENT)))))
+

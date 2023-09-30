@@ -32,7 +32,7 @@ model foo = enumeration (:);
       (class_prefixes)
       (enumeration_class_specifier
         (IDENT))))
-  (LINE_COMMENT))
+  (comment))
 
 ========================================
 Enumeration Class with Annotation Clause
