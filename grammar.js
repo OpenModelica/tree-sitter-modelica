@@ -432,7 +432,7 @@ module.exports = grammar({
             "if", field("condition", $.expression),
             "then", optional(field("thenEquations", $.equation_list)),
             optional(field("elseIfClauses", $.else_if_equation_clause_list)),
-            optional(seq("else", field("elseEquations", $.equation_list))),
+            optional(seq("else", optional(field("elseEquations", $.equation_list)))),
             "end", "if",
             optional(field("descriptionString", $.description_string)),
             optional(field("annotationClause", $.annotation_clause))
@@ -449,7 +449,7 @@ module.exports = grammar({
             "if", field("condition", $.expression),
             "then", optional(field("thenStatements", $.statement_list)),
             optional(field("elseIfClauses", $.else_if_statement_clause_list)),
-            optional(seq("else", field("elseStatements", $.statement_list))),
+            optional(seq("else", optional(field("elseStatements", $.statement_list)))),
             "end", "if",
             optional(field("descriptionString", $.description_string)),
             optional(field("annotationClause", $.annotation_clause))
