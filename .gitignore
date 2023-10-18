@@ -365,6 +365,8 @@ pytestdebug.log
 
 # Translations
 *.mo
+!examples/*.mo
+!test/highlight/*.mo
 *.pot
 
 # Django stuff:
@@ -473,3 +475,6 @@ Thumbs.db
 # End of https://www.toptal.com/developers/gitignore/api/maven,git,eclipse,visualstudiocode,java,python,c++,node,angular
 
 *.wasm
+
+# Cargo
+Cargo.lock
