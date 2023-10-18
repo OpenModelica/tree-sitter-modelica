@@ -7,5 +7,6 @@ within a091234;
 ---
 
 (stored_definitions
+  (within_clause
     (name
-        (IDENT)))
+        (IDENT))))

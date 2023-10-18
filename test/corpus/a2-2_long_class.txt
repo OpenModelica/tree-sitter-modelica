@@ -85,13 +85,21 @@ end Resistor;
         (equation_section
           (equation_list
             (simple_equation
-              (component_reference
-                (IDENT))
-              (binary_expression
-                (component_reference
-                  (IDENT))
-                (component_reference
-                  (IDENT)))
+              (simple_expression
+                (primary_expression
+                  (component_reference
+                    (IDENT))))
+              (expression
+                (simple_expression
+                  (binary_expression
+                    (simple_expression
+                      (primary_expression
+                        (component_reference
+                          (IDENT))))
+                    (simple_expression
+                      (primary_expression
+                        (component_reference
+                          (IDENT)))))))
               (description_string
                 (STRING)))))
         (IDENT)))))
@@ -116,16 +124,25 @@ end Resistor;
         (equation_section
           (equation_list
             (simple_equation
-              (component_reference
-                (IDENT))
-              (function_application
-                (component_reference
-                  (IDENT))
-                (function_call_args
-                  (function_arguments
-                    (component_reference
-                      (IDENT))))))))
+              (simple_expression
+                (primary_expression
+                  (component_reference
+                    (IDENT))))
+              (expression
+                (simple_expression
+                  (primary_expression
+                    (function_application
+                      (component_reference
+                        (IDENT))
+                      (function_call_args
+                        (function_arguments
+                          (expression
+                            (simple_expression
+                              (primary_expression
+                                (component_reference
+                                  (IDENT))))))))))))))
         (IDENT)))))
+
 
 =======================================================
 Long Class with Function Call with Expression Arguments
@@ -147,16 +164,27 @@ end Resistor;
         (equation_section
           (equation_list
             (simple_equation
-              (component_reference
-                (IDENT))
-              (function_application
-                (component_reference
-                  (IDENT))
-                (function_call_args
-                  (function_arguments
-                    (binary_expression
+              (simple_expression
+                (primary_expression
+                  (component_reference
+                    (IDENT))))
+              (expression
+                (simple_expression
+                  (primary_expression
+                    (function_application
                       (component_reference
                         (IDENT))
-                      (component_reference
-                        (IDENT)))))))))
+                      (function_call_args
+                        (function_arguments
+                          (expression
+                            (simple_expression
+                              (binary_expression
+                                (simple_expression
+                                  (primary_expression
+                                    (component_reference
+                                      (IDENT))))
+                                (simple_expression
+                                  (primary_expression
+                                    (component_reference
+                                      (IDENT))))))))))))))))
         (IDENT)))))
