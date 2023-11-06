@@ -1,4 +1,4 @@
-name: build-parser
+name: Build
 run-name: Build tree-sitter-modelica
 
 on:

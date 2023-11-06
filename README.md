@@ -1,3 +1,5 @@
+[![build-parser](https://github.com/OpenModelica/tree-sitter-modelica/actions/workflows/build-parser.yml/badge.svg)](https://github.com/OpenModelica/tree-sitter-modelica/actions/workflows/build-parser.yml)
+
 # tree-sitter-modelica
 
 An [open-source](OSMC-License.txt) Modelica
