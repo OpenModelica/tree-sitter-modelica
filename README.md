@@ -68,4 +68,5 @@ npx tree-sitter highlight examples/SimpleMath.mo
 
 ## Current Status
 
-Tree-sitter-modelica has been tested on a "Save Total" version of the DrumBoiler.mo file which was successfully parsed and highlighted.
+Tree-sitter-modelica has been tested on a "Save Total" version of the DrumBoiler.mo file
+which was successfully parsed and highlighted.
