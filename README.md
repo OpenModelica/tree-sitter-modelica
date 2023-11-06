@@ -1,6 +1,9 @@
 # tree-sitter-modelica
 
-An [open-source](OSMC-License.txt) Modelica ([Modelica Language Specification v3.5](https://specification.modelica.org/maint/3.5/MLS.html)) grammar and highlighting-query for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
+An [open-source](OSMC-License.txt) Modelica
+([Modelica Language Specification v3.5](https://specification.modelica.org/maint/3.5/MLS.html))
+grammar and highlighting-query for
+[tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
 ## Installation
 
@@ -9,17 +12,21 @@ npm install
 npm run build
 ```
 
-To generate the C code to parse Modelica, run:
+To generate the C code to parse Modelica run:
 
 ```bash
 npx tree-sitter generate
-# Skip npx if you have ./node_modules/.bin in your PATH
-# tree-sitter generate
 ```
+
+> [!NOTE]
+> If you have ./node_modules/.bin in your `PATH` environment variable you can skip `npx`
+> ```bash
+> tree-sitter generate
+> ```
 
 ## Unit Tests
 
-There is a number of tests included. To run all tests defined in [test/](./test/), just run:
+There is a number of tests included. To run all tests defined in [test/](./test/) just run:
 
 ```bash
 npx tree-sitter test
@@ -27,7 +34,7 @@ npx tree-sitter test
 
 ### Examples
 
-To test the parser on a Modelica file, you can run:
+To test the parser on a Modelica file run:
 
 ```bash
 npx tree-sitter parse examples/SimpleMath.mo
@@ -35,7 +42,23 @@ npx tree-sitter parse examples/SimpleMath.mo
 
 ## Highlighting
 
-There is also a highlighting query included. To test the highlighting you can run:
+There is also a highlighting query included.
+Make sure that the
+[tree-sitter per-user configuration](https://tree-sitter.github.io/tree-sitter/syntax-highlighting#per-user-configuration)
+are pointing to the parent directory of `tree-sitter-modelica`.
+So if this directory is in `/home/USER/workspace/tree-sitter-modelica` add
+`/home/USER/workspace` to the parser directories:
+
+**config.json**
+```json
+{
+  "parser-directories": [
+    "/home/USER/workspace"
+  ],
+}
+```
+
+To test the highlighting configure run:
 
 ```bash
 npx tree-sitter highlight examples/SimpleMath.mo
