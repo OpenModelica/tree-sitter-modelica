@@ -17,6 +17,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - run: npm ci           # clean install
-      - run: npm run build    # Run build script
-      - run: npm test         # Run test script
+      - name: Clean install
+        run: npm ci
+      - name: Run build script
+        run: npm run build
+      - name: Run test script
+        run: npm test
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tree-sitter-modelica.wasm
+          path: |
+            tree-sitter-modelica.wasm
