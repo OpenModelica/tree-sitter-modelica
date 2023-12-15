@@ -52,3 +52,4 @@ jobs:
             tree-sitter-modelica.wasm
           fail_on_unmatched_files: true
           generate_release_notes: true
+          append_body: true
