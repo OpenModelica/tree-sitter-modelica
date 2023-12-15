@@ -3,15 +3,18 @@
     "version": "0.1.0",
     "description": "Modelica grammar for tree-sitter",
     "main": "bindings/node",
+    "engines": {
+      "node": "20"
+    },
     "scripts": {
       "build": "npx tree-sitter generate && npx node-gyp configure && npx node-gyp build && npx tree-sitter build-wasm . --docker",
       "test": "tree-sitter test"
     },
     "dependencies": {
-      "nan": "^2.15.0"
+      "nan": "^2.18.0"
     },
     "devDependencies": {
-      "tree-sitter-cli": "0.20.4"
+      "tree-sitter-cli": "0.20.8"
     },
     "tree-sitter": [
       {
