@@ -7,6 +7,11 @@ An [open-source](OSMC-License.txt) Modelica
 grammar and highlighting-query for
 [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
+## Dependencies
+
+  - Node.js
+  - Docker
+
 ## Installation
 
 ```bash
@@ -66,7 +71,28 @@ To test the highlighting configure run:
 npx tree-sitter highlight examples/SimpleMath.mo
 ```
 
+## Usage
+
+Use [Web Tree-sitter](https://github.com/tree-sitter/tree-sitter/blob/master/lib/binding_web/README.md)
+`tree-sitter-modelica.wasm` in your application:
+
+```typescript
+import * as Parser from 'web-tree-sitter'
+
+await Parser.init()
+const parser = new Parser
+
+const Modelica = await Parser.Language.load(`tree-sitter-modelica.wasm`)
+parser.setLanguage(Modelica)
+```
+
 ## Current Status
 
-Tree-sitter-modelica has been tested on a "Save Total" version of the DrumBoiler.mo file
-which was successfully parsed and highlighted.
+Tree-sitter-modelica has been tested on a "Save Total" version of the
+[Modelica.Fluid.Examples.DrumBoiler.DrumBoiler](./examples/DrumBoiler.mo) which was
+successfully parsed and highlighted.
+
+```bash
+npx tree-sitter parse examples/DrumBoiler.mo
+npx tree-sitter highlight examples/DrumBoiler.mo
+```

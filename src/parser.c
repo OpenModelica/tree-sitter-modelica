@@ -5,7 +5,7 @@
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
 #endif
 
-#define LANGUAGE_VERSION 13
+#define LANGUAGE_VERSION 14
 #define STATE_COUNT 1754
 #define LARGE_STATE_COUNT 2
 #define SYMBOL_COUNT 225
@@ -44407,6 +44407,7 @@ extern const TSLanguage *tree_sitter_modelica(void) {
     .lex_fn = ts_lex,
     .keyword_lex_fn = ts_lex_keywords,
     .keyword_capture_token = sym_IDENT,
+    .primary_state_ids = ts_primary_state_ids,
   };
   return &language;
 }
