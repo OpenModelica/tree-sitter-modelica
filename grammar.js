@@ -389,7 +389,12 @@ module.exports = grammar({
         ),
 
         connect_clause: $ => seq(
-            "connect", "(", field("component1", $.component_reference), ",", field("component2", $.component_reference), ")",
+            "connect",
+            "(",
+            field("component1", $.component_reference),
+            ",",
+            field("component2", $.component_reference),
+            ")",
             optional(field("descriptionString", $.description_string)),
             optional(field("annotationClause", $.annotation_clause))
         ),
