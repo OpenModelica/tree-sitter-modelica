@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-modelica",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Modelica grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
