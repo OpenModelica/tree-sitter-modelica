@@ -27,7 +27,7 @@ jobs:
         run: npm test
 
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: tree-sitter-modelica.wasm
           path: |
