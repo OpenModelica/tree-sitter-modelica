@@ -1,6 +1,6 @@
-[![build-parser](https://github.com/OpenModelica/tree-sitter-modelica/actions/workflows/build-parser.yml/badge.svg)](https://github.com/OpenModelica/tree-sitter-modelica/actions/workflows/build-parser.yml)
-
 # tree-sitter-modelica
+
+[![build-parser](https://github.com/OpenModelica/tree-sitter-modelica/actions/workflows/build-parser.yml/badge.svg)](https://github.com/OpenModelica/tree-sitter-modelica/actions/workflows/build-parser.yml)
 
 An [open-source](OSMC-License.txt) Modelica
 ([Modelica Language Specification v3.5](https://specification.modelica.org/maint/3.5/MLS.html))
@@ -9,8 +9,8 @@ grammar and highlighting-query for
 
 ## Dependencies
 
-  - Node.js
-  - Docker
+- Node.js
+- [Emscripten](https://emscripten.org/docs/getting_started/downloads.html) (for building the `.wasm` file)
 
 ## Installation
 
@@ -27,6 +27,7 @@ npx tree-sitter generate
 
 > [!NOTE]
 > If you have ./node_modules/.bin in your `PATH` environment variable you can skip `npx`
+>
 > ```bash
 > tree-sitter generate
 > ```
@@ -56,7 +57,8 @@ are pointing to the parent directory of `tree-sitter-modelica`.
 So if this directory is in `/home/USER/workspace/tree-sitter-modelica` add
 `/home/USER/workspace` to the parser directories:
 
-**config.json**
+**config.json:**
+
 ```json
 {
   "parser-directories": [
