@@ -46,7 +46,7 @@ jobs:
           name: tree-sitter-modelica.wasm
 
       - name: Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             tree-sitter-modelica.wasm
