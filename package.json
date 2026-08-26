@@ -2,11 +2,11 @@
   "name": "tree-sitter-modelica",
   "version": "0.2.2",
   "description": "Modelica grammar for tree-sitter",
-  "main": "bindings/node",
-  "types": "bindings/node",
+  "main": "bindings/node/index.js",
+  "types": "bindings/node/index.d.ts",
   "license": "SEE LICENSE IN OSMC-License.txt",
   "engines": {
-    "node": "20"
+    "node": ">=20"
   },
   "scripts": {
     "build": "tree-sitter generate && tree-sitter build --wasm .",
@@ -20,7 +20,7 @@
     "node-gyp-build": "^4.8.0"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.21.1"
+    "tree-sitter": "^0.25.0"
   },
   "peerDependenciesMeta": {
     "tree_sitter": {
