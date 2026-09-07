@@ -823,3 +823,63 @@ end ConnectEquationExample;
               (component_reference
                 (IDENT)))))
         (IDENT)))))
+
+=======================
+Empty Equation Section
+=======================
+
+model M
+  Real y;
+equation
+end M;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))))
+        (equation_section)
+        (IDENT)))))
+
+===============================
+Empty Initial Equation Section
+===============================
+
+model M
+  Real y;
+initial equation
+end M;
+
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))))
+        (equation_section)
+        (IDENT)))))
