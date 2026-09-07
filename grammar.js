@@ -724,11 +724,14 @@ module.exports = grammar({
 
         IDENT: $ => token(choice(
             seq(/[_a-zA-Z]/, repeat(choice(/[0-9]/, /[_a-zA-Z]/))),
-            seq("’", repeat(choice(
+            // Q-IDENT is delimited by U+0027 APOSTROPHE. Using U+2019 RIGHT
+            // SINGLE QUOTATION MARK here, as a rendering of the specification
+            // shows it, meant no quoted identifier ever matched.
+            seq("'", repeat(choice(
                 /[_a-zA-Z]/, /[0-9]/, "!", "#", "$", "%", "&", "(", ")",
                 "*", "+", ",", "-", ".", "/", ":", ";", "<", ">", "=",
                 "?", "@", "[", "]", "^", "{", "}", "|", "~", " ", "\"",
-                seq("\\", choice("’", "'", "\"", "?", "\\", "a", "b", "f", "n", "r", "t", "v")))), "’"))),
+                seq("\\", choice("'", "\"", "?", "\\", "a", "b", "f", "n", "r", "t", "v")))), "'"))),
 
         STRING: $ => token(seq("\"", repeat(choice(/[^"\\]/,
             seq("\\", choice("’", "'", "\"", "?", "\\", "a", "b", "f", "n", "r", "t", "v")))), "\"")),
