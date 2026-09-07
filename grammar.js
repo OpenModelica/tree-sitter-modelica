@@ -341,7 +341,7 @@ module.exports = grammar({
 
         // A.2.6 Equations
 
-        equation_section: $ => prec.right(seq(
+        equation_section: $ => prec.left(seq(
             optional(field("initial", "initial")), "equation",
             optional(field("equations", $.equation_list))
         )),
