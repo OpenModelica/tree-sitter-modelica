@@ -1,0 +1,152 @@
+===================================
+Quoted Identifier As Component Name
+===================================
+
+model M
+  Real 'x y';
+equation
+  'x y' = 1.0;
+end M;
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))))
+        (equation_section
+          (equation_list
+            (simple_equation
+              (simple_expression
+                (primary_expression
+                  (component_reference
+                    (IDENT))))
+              (expression
+                (simple_expression
+                  (primary_expression
+                    (literal_expression
+                      (unsigned_real_literal_expression
+                        (UNSIGNED_REAL)))))))))
+        (IDENT)))))
+
+===============================
+Quoted Identifier As Class Name
+===============================
+
+package 'My Package'
+  model M
+  end M;
+end 'My Package';
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (class_definition
+              (class_prefixes)
+              (long_class_specifier
+                (IDENT)
+                (IDENT)))))
+        (IDENT)))))
+
+========================================
+Quoted Identifier In Component Reference
+========================================
+
+model M
+  Real y;
+equation
+  y = L.'X';
+end M;
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))))
+        (equation_section
+          (equation_list
+            (simple_equation
+              (simple_expression
+                (primary_expression
+                  (component_reference
+                    (IDENT))))
+              (expression
+                (simple_expression
+                  (primary_expression
+                    (component_reference
+                      (component_reference
+                        (IDENT))
+                      (IDENT))))))))
+        (IDENT)))))
+
+=========================================
+Quoted Identifier With Special Characters
+=========================================
+
+model M
+  Real '+ / *';
+equation
+  '+ / *' = 1.0;
+end M;
+---
+
+(stored_definitions
+  (stored_definition
+    (class_definition
+      (class_prefixes)
+      (long_class_specifier
+        (IDENT)
+        (element_list
+          (named_element
+            (component_clause
+              (type_specifier
+                (name
+                  (IDENT)))
+              (component_list
+                (component_declaration
+                  (declaration
+                    (IDENT)))))))
+        (equation_section
+          (equation_list
+            (simple_equation
+              (simple_expression
+                (primary_expression
+                  (component_reference
+                    (IDENT))))
+              (expression
+                (simple_expression
+                  (primary_expression
+                    (literal_expression
+                      (unsigned_real_literal_expression
+                        (UNSIGNED_REAL)))))))))
+        (IDENT)))))
+
