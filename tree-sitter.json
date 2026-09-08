@@ -14,7 +14,7 @@
     }
   ],
   "metadata": {
-    "version": "0.2.2",
+    "version": "0.2.3",
     "license": "OSMC",
     "description": "Modelica grammar for tree-sitter",
     "authors": [

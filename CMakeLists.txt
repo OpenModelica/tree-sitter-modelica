@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-modelica
-        VERSION "0.2.2"
+        VERSION "0.2.3"
         DESCRIPTION "Modelica grammar for tree-sitter"
         HOMEPAGE_URL "https://github.com/openmodelica/tree-sitter-modelica"
         LANGUAGES C)
