@@ -1,6 +1,6 @@
 LANGUAGE_NAME := tree-sitter-modelica
 HOMEPAGE_URL := https://github.com/openmodelica/tree-sitter-modelica
-VERSION := 0.2.2
+VERSION := 0.2.3
 
 # repository
 SRC_DIR := src

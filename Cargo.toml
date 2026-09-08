@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-modelica"
 description = "Modelica grammar for tree-sitter"
-version = "0.2.2"
+version = "0.2.3"
 authors = ["OpenModelica"]
 license = "OSMC"
 readme = "README.md"
