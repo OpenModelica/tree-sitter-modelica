@@ -2,7 +2,7 @@
 Derivative Class
 ================
 
-model foo = der(bar, foo);
+type AngularVelocity = der(Angle, time);
 
 ---
 
@@ -21,7 +21,7 @@ model foo = der(bar, foo);
 Enumeration Unspecified Class with Line Comment
 ===============================================
 
-model foo = enumeration (:);
+type foo = enumeration (:);
 // Line Comment
 
 ---
@@ -38,7 +38,7 @@ model foo = enumeration (:);
 Enumeration Class with Annotation Clause
 ========================================
 
-model foo = enumeration (Red, Green)
+type foo = enumeration (Red, Green)
   annotation(bar);
 
 ---
