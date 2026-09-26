@@ -3,21 +3,35 @@
 ;; See https://tree-sitter.github.io/tree-sitter/4-code-navigation.html for
 ;; the standard `@definition.*` / `@reference.*` vocabulary used here.
 
-;;; Function definitions (including operator functions)
+;;; Function definitions (including operator functions and
+;;; `redeclare function extends ...` overrides)
 ;; e.g. function >computeForce< ... end computeForce;
 ;; e.g. operator function >'+'< ... end '+';
+;; e.g. redeclare function extends >someFunction< ... end someFunction;
 (class_definition
   classPrefixes: (class_prefixes function: "function")
   classSpecifier: [
     (long_class_specifier identifier: (IDENT) @name)
     (short_class_specifier identifier: (IDENT) @name)
+    (derivative_class_specifier identifier: (IDENT) @name)
+    (enumeration_class_specifier identifier: (IDENT) @name)
+    (extends_class_specifier identifier: (IDENT) @name)
   ]) @definition.function
 
-;;; Package definitions (namespaces)
+;;; Package definitions (namespaces), including the short-form alias
+;;; (`package Q = SomeOtherPackage;`) and `redeclare package extends ...`
 ;; e.g. package >Modelica< ... end Modelica;
+;; e.g. package >Q< = SomeOtherPackage;
+;; e.g. redeclare package extends >SomePackage< end SomePackage;
 (class_definition
   classPrefixes: (class_prefixes package: "package")
-  classSpecifier: (long_class_specifier identifier: (IDENT) @name)) @definition.module
+  classSpecifier: [
+    (long_class_specifier identifier: (IDENT) @name)
+    (short_class_specifier identifier: (IDENT) @name)
+    (derivative_class_specifier identifier: (IDENT) @name)
+    (enumeration_class_specifier identifier: (IDENT) @name)
+    (extends_class_specifier identifier: (IDENT) @name)
+  ]) @definition.module
 
 ;;; Every other class-like definition: model, block, class, connector,
 ;;; record, type (including enumerations and derivative types) and plain
@@ -69,3 +83,12 @@
   typeSpecifier: (type_specifier name: (name identifier: (IDENT) @name))) @reference.class
 (constraining_clause
   typeSpecifier: (type_specifier name: (name identifier: (IDENT) @name))) @reference.class
+
+;;; Import clauses: reference the imported class/package.
+;; e.g. import >Interfaces< = Modelica.Blocks.Interfaces;
+;; e.g. import Modelica.Blocks.>Interfaces<;
+;; e.g. import Modelica.Blocks.Interfaces.{>A<, >B<};
+(import_clause
+  name: (name identifier: (IDENT) @name @reference.class))
+(import_list
+  import: (IDENT) @name @reference.class)
